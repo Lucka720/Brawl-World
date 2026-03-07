@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brawl World Gallery</title>
+    <title>Brawl World Mega-Gallery</title>
     <style>
         @keyframes rainbow { 
             0% {color: #ff0000;} 20% {color: #ff8000;} 40% {color: #ffff00;} 
@@ -12,9 +12,8 @@
         body { background: #1a2a3a; color: white; text-align: center; font-family: sans-serif; padding: 10px; margin: 0; }
         h1 { animation: rainbow 5s infinite; text-shadow: 2px 2px black; cursor: pointer; font-size: 2em; margin: 20px 0; }
         
-        /* Стили для БОЛЬШИХ фото */
         #gallery { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .img-container { width: 100%; max-width: 500px; overflow: hidden; border-radius: 15px; border: 3px solid #00ffcc; line-height: 0; }
+        .img-container { width: 100%; max-width: 500px; overflow: hidden; border-radius: 15px; border: 3px solid #00ffcc; line-height: 0; display: none; }
         
         #gallery img { 
             width: 100%; 
@@ -23,7 +22,6 @@
             cursor: zoom-in;
         }
         
-        /* Эффект увеличения при нажатии */
         #gallery img:active { transform: scale(1.5); z-index: 10; }
 
         .admin-box { display: none; background: rgba(0,0,0,0.9); padding: 20px; border-radius: 15px; border: 2px solid gold; margin: 20px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; }
@@ -32,15 +30,10 @@
 </head>
 <body>
     <h1 onclick="checkClicks()">BRAWL STARS WORLD</h1>
-    <p>Твои лучшие моменты Brawl Stars</p>
+    <p>Мега-галерея (поддержка до 1000 фото)</p>
     
     <div id="gallery">
-        <div class="img-container"><img src="images/1.jpg" onerror="this.parentElement.style.display='none'"></div>
-        <div class="img-container"><img src="images/2.jpg" onerror="this.parentElement.style.display='none'"></div>
-        <div class="img-container"><img src="images/3.jpg" onerror="this.parentElement.style.display='none'"></div>
-        <div class="img-container"><img src="images/4.jpg" onerror="this.parentElement.style.display='none'"></div>
-        <div class="img-container"><img src="images/5.jpg" onerror="this.parentElement.style.display='none'"></div>
-    </div>
+        </div>
 
     <div id="admin-panel" class="admin-box">
         <h3>АДМИН-ПАНЕЛЬ</h3>
@@ -49,6 +42,25 @@
     </div>
 
     <script>
+        const gallery = document.getElementById('gallery');
+        
+        // Теперь цикл работает до 1000
+        for (let i = 1; i <= 1000; i++) {
+            const container = document.createElement('div');
+            container.className = 'img-container';
+            
+            const img = document.createElement('img');
+            img.src = `images/${i}.jpg`;
+            
+            // Если картинка успешно загрузилась (существует на сервере)
+            img.onload = function() {
+                container.style.display = 'block';
+            };
+            
+            container.appendChild(img);
+            gallery.appendChild(container);
+        }
+
         let clicks = 0;
         function checkClicks() {
             clicks++;
