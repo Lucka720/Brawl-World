@@ -9,12 +9,25 @@
             0% {color: #ff0000;} 20% {color: #ff8000;} 40% {color: #ffff00;} 
             60% {color: #00ff00;} 80% {color: #0000ff;} 100% {color: #ff0000;} 
         }
-        body { background: #1a2a3a; color: white; text-align: center; font-family: sans-serif; padding: 20px; }
-        h1 { animation: rainbow 5s infinite; text-shadow: 2px 2px black; cursor: pointer; font-size: 2.5em; font-weight: bold; }
-        .admin-box { display: none; background: rgba(0,0,0,0.8); padding: 20px; border-radius: 15px; border: 2px solid gold; margin-top: 20px; }
-        button { background: gold; padding: 15px 30px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        #gallery { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
-        #gallery img { width: 140px; height: 140px; object-fit: cover; margin: 8px; border-radius: 12px; border: 2px solid #00ffcc; }
+        body { background: #1a2a3a; color: white; text-align: center; font-family: sans-serif; padding: 10px; margin: 0; }
+        h1 { animation: rainbow 5s infinite; text-shadow: 2px 2px black; cursor: pointer; font-size: 2em; margin: 20px 0; }
+        
+        /* Стили для БОЛЬШИХ фото */
+        #gallery { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .img-container { width: 100%; max-width: 500px; overflow: hidden; border-radius: 15px; border: 3px solid #00ffcc; line-height: 0; }
+        
+        #gallery img { 
+            width: 100%; 
+            height: auto; 
+            transition: transform 0.3s ease; 
+            cursor: zoom-in;
+        }
+        
+        /* Эффект увеличения при нажатии */
+        #gallery img:active { transform: scale(1.5); z-index: 10; }
+
+        .admin-box { display: none; background: rgba(0,0,0,0.9); padding: 20px; border-radius: 15px; border: 2px solid gold; margin: 20px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; }
+        button { background: gold; padding: 15px 30px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -22,17 +35,17 @@
     <p>Твои лучшие моменты Brawl Stars</p>
     
     <div id="gallery">
-        <img src="images/1.jpg" onerror="this.style.display='none'">
-        <img src="images/2.jpg" onerror="this.style.display='none'">
-        <img src="images/3.jpg" onerror="this.style.display='none'">
-        <img src="images/4.jpg" onerror="this.style.display='none'">
-        <img src="images/5.jpg" onerror="this.style.display='none'">
+        <div class="img-container"><img src="images/1.jpg" onerror="this.parentElement.style.display='none'"></div>
+        <div class="img-container"><img src="images/2.jpg" onerror="this.parentElement.style.display='none'"></div>
+        <div class="img-container"><img src="images/3.jpg" onerror="this.parentElement.style.display='none'"></div>
+        <div class="img-container"><img src="images/4.jpg" onerror="this.parentElement.style.display='none'"></div>
+        <div class="img-container"><img src="images/5.jpg" onerror="this.parentElement.style.display='none'"></div>
     </div>
 
     <div id="admin-panel" class="admin-box">
-        <h3>АДМИН-ПАНЕЛЬ АКТИВНА</h3>
-        <p>Загрузи фото в папку images на GitHub с именами 1.jpg, 2.jpg и т.д.</p>
+        <h3>АДМИН-ПАНЕЛЬ</h3>
         <button onclick="location.reload()">ОБНОВИТЬ ГАЛЕРЕЮ</button>
+        <button onclick="document.getElementById('admin-panel').style.display='none'">ЗАКРЫТЬ</button>
     </div>
 
     <script>
@@ -43,7 +56,6 @@
                 let pass = prompt("Введите пароль:");
                 if (pass === "termux58763") {
                     document.getElementById("admin-panel").style.display = "block";
-                    alert("Доступ открыт!");
                 }
                 clicks = 0;
             }
