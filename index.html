@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brawl World Mega-Gallery</title>
+    <title>Brawl World Gallery</title>
     <style>
         @keyframes rainbow { 
             0% {color: #ff0000;} 20% {color: #ff8000;} 40% {color: #ffff00;} 
@@ -30,7 +30,7 @@
 </head>
 <body>
     <h1 onclick="checkClicks()">BRAWL STARS WORLD</h1>
-    <p>Мега-галерея (поддержка до 1000 фото)</p>
+    <p>Порно Brawl stars без рекламы!</p>
     
     <div id="gallery">
         </div>
@@ -44,7 +44,6 @@
     <script>
         const gallery = document.getElementById('gallery');
         
-        // Теперь цикл работает до 1000
         for (let i = 1; i <= 1000; i++) {
             const container = document.createElement('div');
             container.className = 'img-container';
@@ -52,7 +51,6 @@
             const img = document.createElement('img');
             img.src = `images/${i}.jpg`;
             
-            // Если картинка успешно загрузилась (существует на сервере)
             img.onload = function() {
                 container.style.display = 'block';
             };
