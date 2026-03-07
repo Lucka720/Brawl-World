@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brawl World Gallery</title>
     <style>
-        body { background: #1a2a3a; color: white; text-align: center; font-family: sans-serif; margin: 0; padding: 20px; }
+        body { background: #1a2a3a; color: white; text-align: center; font-family: sans-serif; padding: 20px; }
         h1 { color: #ff4500; text-shadow: 2px 2px black; cursor: pointer; }
         .admin-box { display: none; background: rgba(0,0,0,0.7); padding: 20px; border-radius: 15px; border: 2px solid gold; margin-top: 20px; }
-        button { background: gold; padding: 15px 30px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        #gallery img { width: 100px; margin: 5px; border-radius: 10px; }
+        button { background: gold; padding: 15px 30px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; }
+        #gallery { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+        #gallery img { width: 120px; height: 120px; object-fit: cover; margin: 5px; border-radius: 10px; border: 2px solid #00ffcc; }
     </style>
 </head>
 <body>
-    <h1 id="main-title" onclick="checkClicks()">BRAWL STARS WORLD</h1>
-    <p>Фотографии из папки images...</p>
+    <h1 onclick="checkClicks()">BRAWL STARS WORLD</h1>
     <div id="gallery"></div>
 
     <div id="admin-panel" class="admin-box">
         <h3>АДМИН-ПАНЕЛЬ АКТИВНА</h3>
-        <input type="file" id="fileInput" multiple style="display:block; margin: 10px auto;">
-        <button onclick="alert('Загрузка скоро будет доступна!')">ЗАЛИТЬ В ОБЛАКО</button>
+        <input type="file" id="fileInput" multiple accept="image/*" style="margin: 10px auto; display: block;">
+        <button onclick="handleUpload()">ОПУБЛИКОВАТЬ НА САЙТЕ</button>
     </div>
 
     <script>
@@ -31,10 +31,25 @@
                 let pass = prompt("Введите пароль:");
                 if (pass === "termux58763") {
                     document.getElementById("admin-panel").style.display = "block";
-                    alert("Привет, Шеф!");
                 }
                 clicks = 0;
             }
+        }
+
+        function handleUpload() {
+            const files = document.getElementById('fileInput').files;
+            const gallery = document.getElementById('gallery');
+            
+            for (let file of files) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    gallery.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+            alert("Готово! Фотографии добавлены в ленту сайта.");
         }
     </script>
 </body>
