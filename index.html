@@ -1,67 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brawl World Gallery</title>
     <style>
-        @keyframes rainbow { 0% { color: #ff0000; } 25% { color: #ff00ff; } 50% { color: #0000ff; } 75% { color: #00ff00; } 100% { color: #ff0000; } }
-        body { background: #1a252f; color: white; text-align: center; font-family: sans-serif; margin: 0; padding-bottom: 120px; touch-action: manipulation; }
-        h1 { font-size: 2.2em; animation: rainbow 3s linear infinite; position: sticky; top: 0; background: #1a252f; padding: 15px; z-index: 100; margin: 0; text-shadow: 2px 2px 5px black; cursor: pointer; }
-        .gallery { display: flex; flex-direction: column; align-items: center; gap: 25px; padding: 20px; }
-        img { max-width: 90%; border-radius: 20px; border: 4px solid #00f2ff; box-shadow: 0 0 25px #00f2ff; }
-        
-        #password-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; }
-        .modal-content { background: #2c3e50; padding: 30px; border-radius: 20px; border: 3px solid #00f2ff; width: 80%; max-width: 300px; }
-        input { width: 90%; padding: 12px; margin: 15px 0; border-radius: 10px; border: none; text-align: center; }
-        .login-btn { background: #00f2ff; color: #1a252f; border: none; padding: 12px 20px; border-radius: 10px; font-weight: bold; width: 100%; }
-
-        #admin-panel { display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 1000; background: rgba(0,0,0,0.9); padding: 15px; border-radius: 50px; border: 2px solid #00f2ff; }
+        body { background: #1a2a3a; color: white; text-align: center; font-family: sans-serif; margin: 0; padding: 20px; }
+        h1 { color: #ff4500; text-shadow: 2px 2px black; cursor: pointer; }
+        .admin-box { display: none; background: rgba(0,0,0,0.7); padding: 20px; border-radius: 15px; border: 2px solid gold; margin-top: 20px; }
+        button { background: gold; padding: 15px 30px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        #gallery img { width: 100px; margin: 5px; border-radius: 10px; }
     </style>
 </head>
 <body>
-    <h1 id="main-title">BRAWL STARS WORLD</h1>
-    <div class="gallery" id="gallery">
-        <p>Фотографии загружаются из папки images...</p>
-    </div>
+    <h1 id="main-title" onclick="checkClicks()">BRAWL STARS WORLD</h1>
+    <p>Фотографии из папки images...</p>
+    <div id="gallery"></div>
 
-    <div id="password-modal">
-        <div class="modal-content">
-            <h3 style="color:#00f2ff">АДМИН-ПАНЕЛЬ</h3>
-            <input type="password" id="pass-input" placeholder="Код...">
-            <button class="login-btn" onclick="verifyPass()">ВОЙТИ</button>
-        </div>
-    </div>
-
-    <div id="admin-panel">
-        <p style="margin:0; font-size: 0.8em;">Режим управления активен</p>
+    <div id="admin-panel" class="admin-box">
+        <h3>АДМИН-ПАНЕЛЬ АКТИВНА</h3>
+        <input type="file" id="fileInput" multiple style="display:block; margin: 10px auto;">
+        <button onclick="alert('Загрузка скоро будет доступна!')">ЗАЛИТЬ В ОБЛАКО</button>
     </div>
 
     <script>
-        // ТУТ ВАЖНО: Список твоих фото. Напиши их имена сюда!
-        const photoFiles = ["1.jpg", "2.jpg", "3.jpg"]; // Добавь свои названия
-
-        const gallery = document.getElementById("gallery");
-        photoFiles.forEach(fileName => {
-            const img = document.createElement("img");
-            img.src = "images/" + fileName;
-            gallery.appendChild(img);
-        });
-
-        // Секретный вход
         let clicks = 0;
-        document.getElementById('main-title').onclick = () => {
+        function checkClicks() {
             clicks++;
-            if(clicks === 3) { document.getElementById('password-modal').style.display='flex'; clicks=0; }
-        };
-
-        function verifyPass() {
-            if(document.getElementById('pass-input').value === 'termux58763') {
-                document.getElementById('password-modal').style.display='none';
-                document.getElementById('admin-panel').style.display='block';
-                alert("Привет, Шеф!");
+            if (clicks === 3) {
+                let pass = prompt("Введите пароль:");
+                if (pass === "termux58763") {
+                    document.getElementById("admin-panel").style.display = "block";
+                    alert("Привет, Шеф!");
+                }
+                clicks = 0;
             }
         }
     </script>
-<input type="file" id="fileInput" multiple style="display:none; margin: 20px auto; padding: 10px; background: #00ffcc; color: black; border-radius: 10px; font-weight: bold;"><button id="uploadBtn" onclick="uploadFiles()" style="display:none; margin: 0 auto; padding: 15px 30px; background: gold; border: none; border-radius: 50px; font-weight: bold;">ЗАЛИТЬ В ОБЛАКО</button><div id="admin-panel" style="display:none; text-align:center;"><input type="file" id="fileInput" multiple style="display:block; margin: 20px auto; padding: 10px; background: #00ffcc; border-radius: 10px;"><button onclick="uploadFiles()" style="display:block; margin: 0 auto; padding: 15px 30px; background: gold; border-radius: 50px; font-weight: bold;">ЗАЛИТЬ В ОБЛАКО</button></div></body>
+</body>
 </html>
