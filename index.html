@@ -5,27 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brawl World Gallery</title>
     <style>
-        @keyframes rainbow { 0% {color: gold;} 50% {color: #ff4500;} 100% {color: gold;} }
+        @keyframes rainbow { 
+            0% {color: #ff0000;} 20% {color: #ff8000;} 40% {color: #ffff00;} 
+            60% {color: #00ff00;} 80% {color: #0000ff;} 100% {color: #ff0000;} 
+        }
         body { background: #1a2a3a; color: white; text-align: center; font-family: sans-serif; padding: 20px; }
-        h1 { animation: rainbow 3s infinite; text-shadow: 2px 2px black; cursor: pointer; font-size: 3em; }
+        h1 { animation: rainbow 5s infinite; text-shadow: 2px 2px black; cursor: pointer; font-size: 2.5em; font-weight: bold; }
         .admin-box { display: none; background: rgba(0,0,0,0.8); padding: 20px; border-radius: 15px; border: 2px solid gold; margin-top: 20px; }
-        button { background: gold; padding: 15px 30px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; }
+        button { background: gold; padding: 15px 30px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 10px; }
         #gallery { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
-        #gallery img { width: 150px; height: 150px; object-fit: cover; margin: 10px; border-radius: 15px; border: 3px solid #00ffcc; }
+        #gallery img { width: 140px; height: 140px; object-fit: cover; margin: 8px; border-radius: 12px; border: 2px solid #00ffcc; }
     </style>
 </head>
 <body>
     <h1 onclick="checkClicks()">BRAWL STARS WORLD</h1>
+    <p>Твои лучшие моменты Brawl Stars</p>
+    
     <div id="gallery">
         <img src="images/1.jpg" onerror="this.style.display='none'">
         <img src="images/2.jpg" onerror="this.style.display='none'">
         <img src="images/3.jpg" onerror="this.style.display='none'">
+        <img src="images/4.jpg" onerror="this.style.display='none'">
+        <img src="images/5.jpg" onerror="this.style.display='none'">
     </div>
 
     <div id="admin-panel" class="admin-box">
         <h3>АДМИН-ПАНЕЛЬ АКТИВНА</h3>
-        <p>Загружай фото в папку images через сайт GitHub, чтобы они появились здесь!</p>
-        <button onclick="location.reload()">ОБНОВИТЬ СПИСОК</button>
+        <p>Загрузи фото в папку images на GitHub с именами 1.jpg, 2.jpg и т.д.</p>
+        <button onclick="location.reload()">ОБНОВИТЬ ГАЛЕРЕЮ</button>
     </div>
 
     <script>
@@ -36,6 +43,7 @@
                 let pass = prompt("Введите пароль:");
                 if (pass === "termux58763") {
                     document.getElementById("admin-panel").style.display = "block";
+                    alert("Доступ открыт!");
                 }
                 clicks = 0;
             }
