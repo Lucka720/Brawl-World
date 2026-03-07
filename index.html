@@ -5,22 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brawl World Gallery</title>
     <style>
+        @keyframes rainbow { 0% {color: gold;} 50% {color: #ff4500;} 100% {color: gold;} }
         body { background: #1a2a3a; color: white; text-align: center; font-family: sans-serif; padding: 20px; }
-        h1 { color: #ff4500; text-shadow: 2px 2px black; cursor: pointer; }
-        .admin-box { display: none; background: rgba(0,0,0,0.7); padding: 20px; border-radius: 15px; border: 2px solid gold; margin-top: 20px; }
+        h1 { animation: rainbow 3s infinite; text-shadow: 2px 2px black; cursor: pointer; font-size: 3em; }
+        .admin-box { display: none; background: rgba(0,0,0,0.8); padding: 20px; border-radius: 15px; border: 2px solid gold; margin-top: 20px; }
         button { background: gold; padding: 15px 30px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; }
         #gallery { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
-        #gallery img { width: 120px; height: 120px; object-fit: cover; margin: 5px; border-radius: 10px; border: 2px solid #00ffcc; }
+        #gallery img { width: 150px; height: 150px; object-fit: cover; margin: 10px; border-radius: 15px; border: 3px solid #00ffcc; }
     </style>
 </head>
 <body>
     <h1 onclick="checkClicks()">BRAWL STARS WORLD</h1>
-    <div id="gallery"></div>
+    <div id="gallery">
+        <img src="images/1.jpg" onerror="this.style.display='none'">
+        <img src="images/2.jpg" onerror="this.style.display='none'">
+        <img src="images/3.jpg" onerror="this.style.display='none'">
+    </div>
 
     <div id="admin-panel" class="admin-box">
         <h3>АДМИН-ПАНЕЛЬ АКТИВНА</h3>
-        <input type="file" id="fileInput" multiple accept="image/*" style="margin: 10px auto; display: block;">
-        <button onclick="handleUpload()">ОПУБЛИКОВАТЬ НА САЙТЕ</button>
+        <p>Загружай фото в папку images через сайт GitHub, чтобы они появились здесь!</p>
+        <button onclick="location.reload()">ОБНОВИТЬ СПИСОК</button>
     </div>
 
     <script>
@@ -34,22 +39,6 @@
                 }
                 clicks = 0;
             }
-        }
-
-        function handleUpload() {
-            const files = document.getElementById('fileInput').files;
-            const gallery = document.getElementById('gallery');
-            
-            for (let file of files) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    gallery.appendChild(img);
-                }
-                reader.readAsDataURL(file);
-            }
-            alert("Готово! Фотографии добавлены в ленту сайта.");
         }
     </script>
 </body>
