@@ -42,6 +42,7 @@
     </div>
 
     <script>
+window.onload = function() { if(localStorage.getItem("vip_access") === "true") { document.getElementById("main-content").style.display = "none"; document.getElementById("vip-room").style.display = "block"; loadVIP(); } };
         const gallery = document.getElementById('gallery');
         
         for (let i = 1; i <= 1000; i++) {
