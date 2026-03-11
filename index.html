@@ -24,7 +24,7 @@
     </div>
     <div id="vip-room" class="vip-ui">
         <h1 style="color: gold;">💎 VIP ZONE 💎</h1>
-        <button class="btn" style="background: white;" onclick="document.getElementById("vip-room").style.display="none";document.getElementById("main-content").style.display="block"">⬅ НАЗАД</button>
+        <button class="btn" style="background: white;" onclick="exitVIP()">⬅ НА ГЛАВНУЮ</button>
         <div id="vip-gallery"></div>
     </div>
     <script>
@@ -41,11 +41,14 @@
                 showVIP();
             } else { alert("Ключ недействителен!"); }
         }
-function exitVIP() { document.getElementById("vip-room").style.display = "none"; document.getElementById("main-content").style.display = "block"; }
         function showVIP() {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('vip-room').style.display = 'block';
             loadVIPGallery();
+        }
+        function exitVIP() {
+            document.getElementById('vip-room').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
         }
         function loadMainGallery() {
             const g = document.getElementById('gallery');
