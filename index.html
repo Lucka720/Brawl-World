@@ -1,93 +1,17 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brawl World VIP</title>
-    <style>
-        @keyframes rainbow { 0% {color: #f00;} 50% {color: #0f0;} 100% {color: #f00;} }
-        body { background: #1a2a3a; color: white; text-align: center; font-family: sans-serif; margin: 0; padding: 10px; }
-        .vip-ui { display: none; background: #000; padding: 20px; border: 5px solid gold; border-radius: 20px; }
-        .btn { display: block; padding: 15px 20px; margin: 10px auto; border-radius: 50px; font-weight: bold; cursor: pointer; border: none; text-decoration: none; max-width: 280px; transition: 0.3s; }
-        .btn:active { transform: scale(0.95); }
-        .btn-vip { background: gold; color: black; box-shadow: 0 0 15px gold; }
-        .buy-block { background: rgba(255, 215, 0, 0.1); padding: 20px; border: 2px dashed gold; border-radius: 15px; margin: 20px 0; }
-        .price-tag { font-weight: bold; color: gold; font-size: 1.4em; margin-bottom: 10px; }
-        #gallery, #vip-gallery { display: flex; flex-direction: column; align-items: center; gap: 20px; margin-top: 20px; }
-        .img-container { width: 100%; max-width: 500px; border-radius: 15px; border: 3px solid #00ffcc; overflow: hidden; display: none; }
-        img { width: 100%; height: auto; }
-    </style>
-</head>
-<body>
-    <div id="main-content">
-        <h1 style="animation: rainbow 3s infinite;">BRAWL STARS WORLD</h1>
-        
-        <button class="btn btn-vip" onclick="enterVIP()">🌟 ВВЕСТИ КЛЮЧ ДОСТУПА</button>
-
-        <div class="buy-block">
-            <h3 style="color: gold; margin-bottom: 5px;">💎 ПОЛУЧИТЬ VIP ДОСТУП 💎</h3>
-            <p style="font-size: 0.9em; margin-bottom: 15px;">Разблокируй 100+ эксклюзивных фото!</p>
-            
-            <div class="price-tag">СТОИМОСТЬ: 120₽ (1.30$)</div>
-            
-            <a href="https://boosty.to/brawl.vip.world/purchase/120" target="_blank" class="btn" style="background: #ff5433; color: white;">Купить VIP (РФ / СБП)</a>
-            <a href="https://www.paypal.com/paypalme/denysdidenko329/1.30usd" target="_blank" class="btn" style="background: #0070ba; color: white;">Купить VIP (PayPal / Card)</a>
-            <a href="https://t.me/Sup_bsp_bot" target="_blank" class="btn" style="background: #24A1DE; color: white;">Связь с разработчиком</a>
-            
-            <p style="font-size: 0.75em; color: #aaa; margin-top: 15px;">После оплаты пришлите скриншот чека в бота для получения ключа</p>
-        </div>
-
-        <div id="gallery"></div>
-    </div>
-
-    <div id="vip-room" class="vip-ui">
-        <h1 style="color: gold;">💎 VIP ZONE 💎</h1>
-        <button class="btn" style="background: white;" onclick="exitVIP()">⬅ НА ГЛАВНУЮ</button>
-        <div id="vip-gallery"></div>
-    </div>
-
-    <script>
-        const validKeys = ["VIP-777", "GOLD-123", "BRAWL-99"];
-
-        window.onload = function() {
-            if (localStorage.getItem("vip_active") === "true") { showVIP(); }
-            loadGallery("gallery", 218, "images/");
-        };
-
-        function enterVIP() {
-            let userKey = prompt("Введите ваш личный ключ:");
-            if (validKeys.includes(userKey)) {
-                localStorage.setItem("vip_active", "true");
-                alert("Доступ активирован!");
-                showVIP();
-            } else { alert("Неверный ключ!"); }
-        }
-
-        function showVIP() {
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('vip-room').style.display = 'block';
-            loadGallery("vip-gallery", 100, "images/vip/");
-        }
-
-        function exitVIP() {
-            document.getElementById('vip-room').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-        }
-
-        function loadGallery(id, count, path) {
-            const container = document.getElementById(id);
-            if (container.children.length > 0) return;
-            for (let i = 1; i <= count; i++) {
-                const div = document.createElement('div');
-                div.className = 'img-container';
-                if(path.includes('vip')) div.style.borderColor = 'gold';
-                const img = document.createElement('img');
-                img.src = path + i + ".jpg";
-                img.onload = () => div.style.display = 'block';
-                div.appendChild(img);
-                container.appendChild(div);
-            }
-        }
-    </script>
-</body>
-</html>
+<!-- Default Statcounter code for Brawl world
+https://lucka720.github.io/Brawl-World/ -->
+<script type="text/javascript">
+var sc_project=13210143; 
+var sc_invisible=1; 
+var sc_security="dc696bdb"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/13210143/0/dc696bdb/1/"
+alt="Web Analytics"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
