@@ -8,7 +8,8 @@
         @keyframes rainbow { 0% {color: #f00;} 50% {color: #0f0;} 100% {color: #f00;} }
         body { background: #1a2a3a; color: white; text-align: center; font-family: sans-serif; margin: 0; padding: 10px; }
         .vip-ui { display: none; background: #000; padding: 20px; border: 5px solid gold; border-radius: 20px; }
-        .btn { display: inline-block; padding: 15px 25px; margin: 10px; border-radius: 50px; font-weight: bold; cursor: pointer; border: none; text-decoration: none; }
+        .btn { display: block; padding: 15px 20px; margin: 10px auto; border-radius: 50px; font-weight: bold; cursor: pointer; border: none; text-decoration: none; max-width: 280px; transition: 0.3s; }
+        .btn:active { transform: scale(0.95); }
         .btn-vip { background: gold; color: black; box-shadow: 0 0 15px gold; }
         .buy-block { background: rgba(255, 215, 0, 0.1); padding: 20px; border: 2px dashed gold; border-radius: 15px; margin: 20px 0; }
         #gallery, #vip-gallery { display: flex; flex-direction: column; align-items: center; gap: 20px; margin-top: 20px; }
@@ -23,12 +24,16 @@
         <button class="btn btn-vip" onclick="enterVIP()">🌟 ВВЕСТИ КЛЮЧ ДОСТУПА</button>
 
         <div class="buy-block">
-            <h3 style="color: gold; margin: 0 0 10px 0;">💎 ПОЛУЧИТЬ VIP ДОСТУП 💎</h3>
-            <p style="font-size: 0.9em;">Разблокируй 100+ эксклюзивных фото навсегда!</p>
-            <p style="font-weight: bold; color: #fff; font-size: 1.1em; margin-bottom: 5px;">СТОИМОСТЬ VIP = 2$ !!!</p>
+            <h3 style="color: gold; margin-bottom: 5px;">💎 ПОЛУЧИТЬ VIP ДОСТУП 💎</h3>
+            <p style="font-size: 0.9em; margin-bottom: 15px;">Разблокируй 100+ эксклюзивных фото!</p>
+            
+            <p style="font-weight: bold; color: #fff; font-size: 1.2em; margin-bottom: 10px;">СТОИМОСТЬ VIP = 2$ !!!</p>
+            
             <a href="https://boosty.to/brawl.vip.world" target="_blank" class="btn" style="background: #ff5433; color: white;">Оплатить (РФ)</a>
+            <a href="https://ko-fi.com/lucka59270" target="_blank" class="btn" style="background: #00afff; color: white;">Оплата с любой страны (кроме РФ)</a>
             <a href="https://t.me/Sup_bsp_bot" target="_blank" class="btn" style="background: #24A1DE; color: white;">Связь с разработчиком</a>
-            <p style="font-size: 0.7em; color: #aaa; margin-top: 10px;">Для оплаты через CZK/Apple Pay или по вопросам пишите в бота</p>
+            
+            <p style="font-size: 0.75em; color: #aaa; margin-top: 15px;">После оплаты через сервисы или для оплаты Apple Pay / CZK пишите в бота за ключом</p>
         </div>
 
         <div id="gallery"></div>
