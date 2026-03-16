@@ -5,112 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brawl World VIP</title>
     <style>
-        body { background-color: #1c252e; color: white; font-family: 'Arial', sans-serif; text-align: center; margin: 0; padding: 10px; }
-        .header-title { color: #e74c3c; font-weight: bold; font-size: 28px; text-transform: uppercase; margin: 20px 0; }
-        
-        .btn { width: 90%; max-width: 400px; padding: 15px; margin: 8px 0; border: none; border-radius: 30px; font-weight: bold; font-size: 16px; cursor: pointer; display: inline-block; text-decoration: none; color: white; }
-        .btn-input { background: #1c252e; border: 2px solid #f1c40f; color: white; box-shadow: 0 0 15px #f1c40f; margin-bottom: 20px; }
-        .btn-rf { background: #e67e22; }
-        .btn-paypal { background: #2980b9; }
-        .btn-dev { background: #3498db; }
-        .btn-back { background: white; color: black; border-radius: 30px; padding: 10px 30px; margin-top: 15px; font-size: 14px; text-transform: uppercase; border: none; font-weight: bold; }
-
-        .payment-card { border: 2px dashed #f1c40f; border-radius: 15px; padding: 15px; margin: 10px auto; max-width: 450px; }
-        .price-text { color: #f1c40f; font-size: 20px; font-weight: bold; }
-        .footer-text { font-size: 12px; color: #7f8c8d; margin-top: 10px; }
-        
-        .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 15px; }
-        .gallery img { 
-            width: 100%; max-width: 340px; border-radius: 15px; 
-            border: 2px solid #5dade2; 
-            box-shadow: 0 0 20px #5dade2;
-            object-fit: cover;
+        body {
+            background-color: #1c252e;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
         }
-
-        .vip-zone-header { background: black; border: 3px solid #f1c40f; border-radius: 20px; padding: 40px 20px; margin: 20px auto; max-width: 450px; }
-        .vip-title { color: #f1c40f; font-size: 32px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
-
-        #main-page, #vip-page { display: none; }
-        input[type="password"] { background: transparent; border: none; color: white; text-align: center; font-size: 16px; width: 100%; outline: none; caret-color: #f1c40f; }
+        .header {
+            background-color: #7a0000;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            padding: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #ff0000;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .vip-input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-
-    <div id="main-page">
-        <div class="header-title">BRAWL STARS WORLD</div>
+    <div class="header">BRAWL WORLD VIP SHOP</div>
+    <div class="container">
+        <h1>ЭКСКЛЮЗИВНЫЕ ПРЕДЛОЖЕНИЯ</h1>
+        <p>Получи доступ к секретным бойцам и гемам прямо сейчас!</p>
         
-        <div class="btn btn-input">
-            <input type="password" id="vip-key" placeholder="🌟 ВВЕСТИ КЛЮЧ ДОСТУПА" oninput="checkKey(this.value)">
-        </div>
+        <a href="https://boosty.to/your-link" class="btn">КУПИТЬ ЧЕРЕЗ BOOSTY</a><br>
+        <a href="https://paypal.me/your-link" class="btn">КУПИТЬ ЧЕРЕЗ PAYPAL</a>
 
-        <div class="payment-card">
-            <div style="color: #5dade2; font-weight: bold; font-size: 18px; margin-bottom: 10px;">💎 ПОЛУЧИТЬ VIP ДОСТУП 💎</div>
-            <div style="margin-bottom: 10px;">Разблокируй 100+ эксклюзивных фото!</div>
-            <div class="price-text">СТОИМОСТЬ: 120₽ (1.30$)</div>
-            
-            <button class="btn btn-rf" onclick="window.location.href='https://boosty.to/brawl.vip.world/donate/donate?amount=120'">Купить VIP (РФ / СБП)</button>
-            <button class="btn btn-paypal" onclick="window.location.href='https://www.paypal.com/paypalme/denysdidenko329/1.30USD'">Купить VIP (PayPal / Card)</button>
-            <button class="btn btn-dev" onclick="window.location.href='https://t.me/Sup_bsp_bot'">Связь с разработчиком</button>
-            
-            <div class="footer-text">После оплаты пришлите скриншот чека в бота для получения ключа</div>
+        <div style="margin-top: 40px;">
+            <h3>ЕСТЬ VIP КЛЮЧ? ВВОДИ:</h3>
+            <input type="text" id="vipKey" class="vip-input" placeholder="Введите код...">
+            <button onclick="checkKey()" class="btn" style="padding: 10px;">ВОЙТИ</button>
         </div>
-
-        <div class="gallery" id="main-gallery"></div>
-    </div>
-
-    <div id="vip-page">
-        <div class="vip-zone-header">
-            <div class="vip-title">💎 VIP ZONE 💎</div>
-            <button class="btn-back" onclick="goToMain()">⬅ НАЗАД</button>
-        </div>
-        <div class="gallery" id="vip-gallery"></div>
     </div>
 
     <script>
-        const VALID_KEY = "AX-5670";
-
-        window.onload = function() {
-            if (localStorage.getItem('isVip') === 'true') {
-                goToVip();
+        function checkKey() {
+            const key = document.getElementById('vipKey').value;
+            if (key === 'AX-5670') {
+                alert('ДОСТУП РАЗРЕШЕН! Добро пожаловать в VIP зону.');
+                window.location.href = 'https://lucka720.github.io/Brawl-World/vip.html';
             } else {
-                goToMain();
-            }
-        };
-
-        function checkKey(val) {
-            if (val === VALID_KEY) {
-                localStorage.setItem('isVip', 'true');
-                goToVip();
-            }
-        }
-
-        function goToVip() {
-            document.getElementById('main-page').style.display = 'none';
-            document.getElementById('vip-page').style.display = 'block';
-            loadGallery('vip-gallery', 'vip_images/', 'vip.jpg', 100, 'vip');
-        }
-
-        function goToMain() {
-            document.getElementById('vip-page').style.display = 'none';
-            document.getElementById('main-page').style.display = 'block';
-            loadGallery('main-gallery', 'images/', '.jpg', 500, 'main');
-        }
-
-        function loadGallery(containerId, path, suffix, limit, type) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-            for (let i = 1; i <= limit; i++) {
-                const img = document.createElement('img');
-                img.src = type === 'vip' ? ${path}${i}${suffix} : ${path}${i}.jpg;
-                if (type === 'vip') {
-                    img.style.borderColor = '#f1c40f';
-                    img.style.boxShadow = '0 0 20px #f1c40f';
-                }
-                img.onerror = () => img.remove();
-                container.appendChild(img);
+                alert('НЕВЕРНЫЙ КЛЮЧ!');
             }
         }
     </script>
 </body>
 </html>
- 
