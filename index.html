@@ -5,115 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brawl World VIP</title>
     <style>
-        /* СТАРЫЙ ДИЗАЙН ЦВЕТА И ШРИФТЫ */
         body { background-color: #1c252e; color: white; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; }
         .header { color: #e94e3b; font-size: 28px; font-weight: bold; margin: 30px 0; text-transform: uppercase; }
-        
         .key-btn { display: inline-block; background: linear-gradient(to bottom, #f7e06d, #e5c100); color: black; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-bottom: 20px; box-shadow: 0 0 15px rgba(247, 224, 109, 0.5); cursor: pointer; border: none; font-size: 16px; }
-        
         .main-card { border: 2px dashed #f7e06d; border-radius: 20px; margin: 0 15px; padding: 20px; background-color: rgba(0,0,0,0.2); }
         .price-text { color: #f7e06d; font-size: 24px; font-weight: bold; margin: 15px 0; }
-        
-        /* КНОПКИ ИЗ ПРИМЕРА */
         .btn { display: block; width: 90%; margin: 10px auto; padding: 15px; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; font-size: 18px; transition: 0.3s; }
-        .btn-orange { background-color: #e97444; } /* Boosty */
-        .btn-blue { background-color: #3b7ab9; }   /* PayPal */
-        .btn-cyan { background-color: #5ba2d5; }   /* TG */
+        .btn-orange { background-color: #e97444; }
+        .btn-blue { background-color: #3b7ab9; }
+        .btn-cyan { background-color: #5ba2d5; }
         .btn:hover { transform: scale(1.03); filter: brightness(1.1); }
-        
         .footer-text { color: #777; font-size: 12px; margin-top: 15px; padding: 0 20px; }
-
-        /* ГАЛЕРЕЯ И СВЕЧЕНИЕ */
         .gallery { padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 25px; }
-        .gallery img { 
-            width: 95%; 
-            max-width: 500px; 
-            border-radius: 15px; 
-            border: 2px solid #5ba2d5; 
-            filter: drop-shadow(0 0 10px rgba(91, 162, 213, 0.6)); 
-            transition: 0.3s;
-        }
-        .gallery img:hover { filter: drop-shadow(0 0 20px #ff0000); transform: scale(1.02); }
-
-        /* VIP СЕКЦИЯ */
+        .gallery img { width: 95%; max-width: 500px; border-radius: 15px; border: 2px solid #5ba2d5; filter: drop-shadow(0 0 10px rgba(91, 162, 213, 0.6)); transition: 0.3s; }
         #vipContent { display: none; }
-        .vip-gallery img { 
-            border: 3px solid #f7e06d; 
-            filter: drop-shadow(0 0 15px rgba(247, 224, 109, 0.7)); 
-        }
-        .vip-gallery img:hover { filter: drop-shadow(0 0 25px #f7e06d); }
+        .vip-gallery img { border: 3px solid #f7e06d; filter: drop-shadow(0 0 15px rgba(247, 224, 109, 0.7)); }
     </style>
 </head>
 <body>
-
     <div id="shopContent">
         <div class="header">BRAWL STARS WORLD</div>
-        
         <button onclick="showKeyInput()" class="key-btn">🌟 ВВЕСТИ КЛЮЧ ДОСТУПА</button>
-
         <div class="main-card">
             <h3 style="color:#f7e06d; margin:0;">💎 ПОЛУЧИТЬ VIP ДОСТУП 💎</h3>
             <p style="margin:10px 0;">Разблокируй 1000+ эксклюзивных фото!</p>
             <div class="price-text">СТОИМОСТЬ: (РФ) 5.01€, (ВСЕ кроме РФ) 1.30$!</div>
-            
             <a href="https://app.lava.top/products/7efabf3c-ca82-4ebf-b433-6e26bc77b886" class="btn btn-orange">Купить VIP (РФ / СБП)</a>
             <a href="https://paypal.me/denysdidenko329/1.30USD" class="btn btn-blue">Купить VIP (PayPal / Card)</a>
             <a href="https://t.me/Sup_bsp_bot" class="btn btn-cyan">Связь с разработчиком</a>
-            
             <div class="footer-text">После оплаты пришлите скриншот чека в бота для получения ключа</div>
         </div>
-
         <div class="gallery" id="mainGallery"></div>
     </div>
-
     <div id="vipContent">
         <h1 style="color:#f7e06d; margin-top: 30px;">💎 VIP ZONE 💎</h1>
         <button onclick="logout()" style="background:white; border:none; padding:10px 25px; border-radius:20px; font-weight:bold; cursor:pointer; margin-bottom:20px;">⬅ НАЗАД</button>
         <div class="gallery vip-gallery" id="vipGallery"></div>
     </div>
-
     <script>
-        // ЛОГИКА ЗАПОМИНАНИЯ (LocalStorage)
         window.onload = function() {
-            loadImages('images', '', '', 'mainGallery', 1000); // Обычные до 1000
-            if (localStorage.getItem('isBrawlVip') === 'true') {
-                activateVipUI();
-            }
+            loadImages('images', '', '', 'mainGallery', 1000);
+            if (localStorage.getItem('isBrawlVip') === 'true') { activateVipUI(); }
         }
-
         function loadImages(folder, prefix, suffix, containerId, limit) {
             const container = document.getElementById(containerId);
             for (let i = 1; i <= limit; i++) {
                 let img = document.createElement('img');
                 img.src = `${folder}/${i}${suffix}.jpg`;
-                img.loading = "lazy"; // Чтобы сайт не тормозил при 1000 фото
-                img.onerror = function() { this.remove(); }; // Если фото нет - просто не показываем
+                img.loading = "lazy";
+                img.onerror = function() { this.remove(); };
                 container.appendChild(img);
             }
         }
-
         function showKeyInput() {
             let key = prompt("Введите ключ доступа:");
             if (key === 'AX-5670') {
                 localStorage.setItem('isBrawlVip', 'true');
                 activateVipUI();
-            } else if (key !== null) {
-                alert('НЕВЕРНЫЙ КЛЮЧ!');
-            }
+            } else if (key !== null) { alert('НЕВЕРНЫЙ КЛЮЧ!'); }
         }
-
         function activateVipUI() {
             document.getElementById('shopContent').style.display = 'none';
             document.getElementById('vipContent').style.display = 'block';
             if (document.getElementById('vipGallery').children.length === 0) {
-                loadImages('vip.images', '', 'vip', 'vipGallery', 1000); // VIP до 1000
+                loadImages('vip.images', '', 'vip', 'vipGallery', 1000);
             }
         }
-
         function logout() {
             document.getElementById('vipContent').style.display = 'none';
             document.getElementById('shopContent').style.display = 'block';
         }
     </script>
+
+    <!-- Default Statcounter code for BRAWL PORNO VIP XXX
+https://lucka720.github.io/Brawl-World/ -->
+<script type="text/javascript">
+var sc_project=13211170; 
+var sc_invisible=1; 
+var sc_security="c870f9cc"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="web counter"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/13211170/0/c870f9cc/1/"
+alt="web counter"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
 </body>
 </html>
