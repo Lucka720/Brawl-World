@@ -7,7 +7,7 @@
     <style>
         body { background-color: #1c252e; color: white; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; }
         .header { color: #e94e3b; font-size: 28px; font-weight: bold; margin: 30px 0; text-transform: uppercase; }
-        .key-btn { display: inline-block; background: linear-gradient(to bottom, #f7e06d, #e5c100); color: black; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-bottom: 20px; box-shadow: 0 0 15px rgba(247, 224, 109, 0.5); }
+        .key-btn { display: inline-block; background: linear-gradient(to bottom, #f7e06d, #e5c100); color: black; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-bottom: 20px; box-shadow: 0 0 15px rgba(247, 224, 109, 0.5); cursor: pointer; }
         .main-card { border: 2px dashed #f7e06d; border-radius: 20px; margin: 0 15px; padding: 20px; background-color: rgba(0,0,0,0.2); }
         .price-text { color: #f7e06d; font-size: 24px; font-weight: bold; margin: 15px 0; }
         .btn { display: block; width: 90%; margin: 10px auto; padding: 15px; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; font-size: 18px; }
@@ -15,47 +15,54 @@
         .btn-blue { background-color: #3b7ab9; }
         .btn-cyan { background-color: #5ba2d5; }
         .footer-text { color: #777; font-size: 12px; margin-top: 15px; padding: 0 20px; }
-        .char-img { width: 95%; max-width: 400px; border-radius: 15px; margin-top: 20px; border: 2px solid #5ba2d5; box-shadow: 0 0 15px rgba(91, 162, 213, 0.4); }
-        
-        /* VIP ZONE */
-        #vipContent { display: none; padding-top: 50px; }
-        .vip-box { border: 4px solid #f7e06d; background: black; border-radius: 20px; padding: 40px 20px; margin: 0 20px; }
+        .gallery { padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .gallery img { width: 95%; max-width: 500px; border-radius: 15px; border: 2px solid #5ba2d5; box-shadow: 0 0 15px rgba(91, 162, 213, 0.4); }
+        .vip-gallery img { border-color: #f7e06d; box-shadow: 0 0 15px rgba(247, 224, 109, 0.5); }
+        #vipContent { display: none; }
     </style>
 </head>
 <body>
     <div id="shopContent">
         <div class="header">BRAWL STARS WORLD</div>
-        
-        <a href="#" onclick="showKeyInput()" class="key-btn">🌟 ВВЕСТИ КЛЮЧ ДОСТУПА</a>
-
+        <div onclick="showKeyInput()" class="key-btn">🌟 ВВЕСТИ КЛЮЧ ДОСТУПА</div>
         <div class="main-card">
             <h3 style="color:#f7e06d; margin:0;">💎 ПОЛУЧИТЬ VIP ДОСТУП 💎</h3>
             <p style="margin:10px 0;">Разблокируй 100+ эксклюзивных фото!</p>
             <div class="price-text">СТОИМОСТЬ: 120₽ (1.30$)</div>
-            
             <a href="https://boosty.to/brawl.vip.world/donate" class="btn btn-orange">Купить VIP (РФ / СБП)</a>
             <a href="https://paypal.me/denysdidenko329" class="btn btn-blue">Купить VIP (PayPal / Card)</a>
             <a href="https://t.me/Sup_bsp_bot" class="btn btn-cyan">Связь с разработчиком</a>
-            
             <div class="footer-text">После оплаты пришлите скриншот чека в бота для получения ключа</div>
         </div>
-
-        <img src="images/leon.png" class="char-img" onerror="this.src='https://via.placeholder.com/400x250?text=Image+Not+Found'">
+        <div class="gallery" id="mainGallery"></div>
     </div>
 
     <div id="vipContent">
-        <div class="vip-box">
-            <h1 style="color:#f7e06d;">💎 VIP ZONE 💎</h1>
-            <button onclick="location.reload()" style="background:white; border:none; padding:10px 25px; border-radius:20px; font-weight:bold; cursor:pointer;">⬅ НАЗАД</button>
-        </div>
+        <h1 style="color:#f7e06d; margin-top: 30px;">💎 VIP ZONE 💎</h1>
+        <button onclick="location.reload()" style="background:white; border:none; padding:10px 25px; border-radius:20px; font-weight:bold; cursor:pointer;">⬅ НАЗАД</button>
+        <div class="gallery vip-gallery" id="vipGallery"></div>
     </div>
 
     <script>
+        function loadImages(folder, prefix, suffix, containerId, limit) {
+            const container = document.getElementById(containerId);
+            for (let i = 1; i <= limit; i++) {
+                let img = document.createElement('img');
+                img.src = `${folder}/${i}${suffix}.jpg`;
+                img.onerror = function() { this.style.display = 'none'; };
+                container.appendChild(img);
+            }
+        }
+
+        // Загружаем до 100 фото в каждую секцию
+        loadImages('images', '', '', 'mainGallery', 100);
+
         function showKeyInput() {
             let key = prompt("Введите ключ доступа:");
             if (key === 'AX-5670') {
                 document.getElementById('shopContent').style.display = 'none';
                 document.getElementById('vipContent').style.display = 'block';
+                loadImages('vip.images', '', 'vip', 'vipGallery', 100);
             } else if (key !== null) {
                 alert('НЕВЕРНЫЙ КЛЮЧ!');
             }
