@@ -59,10 +59,21 @@
         }
         function showKeyInput() {
             let key = prompt("Введите ключ доступа:");
-            if (key === 'AX-5670') {
-                localStorage.setItem('isBrawlVip', 'true');
+            if (!key) return;
+            
+            let usedKeys = JSON.parse(localStorage.getItem("usedBrawlKeys") || "[]");
+
+            if (usedKeys.includes(key)) {
+                alert("ЭТОТ КЛЮЧ УЖЕ БЫЛ ИСПОЛЬЗОВАН!");
+            } else if (validKeys.includes(key)) {
+                usedKeys.push(key);
+                localStorage.setItem("usedBrawlKeys", JSON.stringify(usedKeys));
+                localStorage.setItem("isBrawlVip", "true");
                 activateVipUI();
-            } else if (key !== null) { alert('НЕВЕРНЫЙ КЛЮЧ!'); }
+            } else {
+                alert("НЕВЕРНЫЙ КЛЮЧ!");
+            }
+        }
         }
         function activateVipUI() {
             document.getElementById('shopContent').style.display = 'none';
