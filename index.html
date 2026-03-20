@@ -9,15 +9,15 @@
         .header { color: #e94e3b; font-size: 28px; font-weight: bold; margin: 30px 0; text-transform: uppercase; }
         .key-btn { display: inline-block; background: linear-gradient(to bottom, #f7e06d, #e5c100); color: black; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-bottom: 20px; box-shadow: 0 0 15px rgba(247, 224, 109, 0.5); cursor: pointer; border: none; font-size: 16px; }
         .main-card { border: 2px dashed #f7e06d; border-radius: 20px; margin: 0 15px; padding: 20px; background-color: rgba(0,0,0,0.2); }
-        .price-text { color: #f7e06d; font-size: 24px; font-weight: bold; margin: 15px 0; }
-        .btn { display: block; width: 90%; margin: 10px auto; padding: 15px; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; font-size: 18px; transition: 0.3s; }
-        .btn-orange { background-color: #e97444; }
+        .price-text { color: #f7e06d; font-size: 24px; font-weight: bold; margin: 15px 0; line-height: 1.2; }
+        .btn { display: block; width: 90%; margin: 10px auto; padding: 15px; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; font-size: 18px; transition: 0.3s; border: none; cursor: pointer; }
+        .btn-stars { background: linear-gradient(45deg, #e67e22, #d35400); }
         .btn-blue { background-color: #3b7ab9; }
         .btn-cyan { background-color: #5ba2d5; }
         .btn:hover { transform: scale(1.03); filter: brightness(1.1); }
         .footer-text { color: #777; font-size: 12px; margin-top: 15px; padding: 0 20px; }
         .gallery { padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 25px; }
-        .gallery img { width: 95%; max-width: 500px; border-radius: 15px; border: 2px solid #5ba2d5; filter: drop-shadow(0 0 10px rgba(91, 162, 213, 0.6)); transition: 0.3s; }
+        .gallery img { width: 95%; max-width: 500px; border-radius: 15px; border: 2px solid #5ba2d5; filter: drop-shadow(0 0 10px rgba(91, 162, 213, 0.6)); }
         #vipContent { display: none; }
         .vip-gallery img { border: 3px solid #f7e06d; filter: drop-shadow(0 0 15px rgba(247, 224, 109, 0.7)); }
     </style>
@@ -29,82 +29,69 @@
         <div class="main-card">
             <h3 style="color:#f7e06d; margin:0;">💎 ПОЛУЧИТЬ VIP ДОСТУП 💎</h3>
             <p style="margin:10px 0;">Разблокируй 1000+ эксклюзивных фото!</p>
-            <div class="price-text">СТОИМОСТЬ: (РФ) 5.01€, (ВСЕ кроме РФ) 1.30$!</div>
-            <a href="https://app.lava.top/products/7efabf3c-ca82-4ebf-b433-6e26bc77b886" class="btn btn-orange">Купить VIP (РФ / СБП)</a>
-            <a href="https://paypal.me/denysdidenko329/1.30USD" class="btn btn-blue">Купить VIP (PayPal / Card)</a>
+            <div class="price-text">Покупка TG звёздами = 100⭐️</div>
+            
+            <a href="https://t.me/Sup_bsp_bot?start=buy_vip" class="btn btn-stars">Купить VIP (Telegram Stars ⭐)</a>
+            <a href="https://paypal.me/denysdidenko329/5.01USD" class="btn btn-blue">Купить VIP (PayPal / Card)</a>
             <a href="https://t.me/Sup_bsp_bot" class="btn btn-cyan">Связь с разработчиком</a>
-            <div class="footer-text">После оплаты пришлите скриншот чека в бота для получения ключа</div>
+            
+            <div class="footer-text">После оплаты в боте вы сразу получите ключ доступа</div>
         </div>
         <div class="gallery" id="mainGallery"></div>
     </div>
+
     <div id="vipContent">
         <h1 style="color:#f7e06d; margin-top: 30px;">💎 VIP ZONE 💎</h1>
         <button onclick="logout()" style="background:white; border:none; padding:10px 25px; border-radius:20px; font-weight:bold; cursor:pointer; margin-bottom:20px;">⬅ НАЗАД</button>
         <div class="gallery vip-gallery" id="vipGallery"></div>
     </div>
+
     <script>
+        const validKeys = ['7G9K2W4V1X','M5R8B3N6P2','Q1Z9D4F7G5','L8X2C6V3B9','K4J7H1G5F2','P9O3I1U7Y4','T6R2E8W1Q0','A5S9D3F7G2','H1J4K8L0M6','Z2X5C8V1B4','N7M3K9J5H1','G4F8D2S6A0','P1O9I3U7Y5','T8R4E0W6Q2','L5K1J9H3G7','F2D6S0A4P8','X3C7V1B5N9','M0N4B8V2C6','Q7W1E5R9T3','Y0U4I8O2P6','A1S5D9F3G7','K0L4P8O2I6','U3Y7T1R5E9','H2J6K0L4M8','N1B5V9C3X7','G0F4D8S2A6','W9E3R7T1Y5','I0O4P8L2K6','J1H5G9F3D7','S0A4Z8X2C6','V1B5N9M3K7','P0O4I8U2Y6','T1R5E9W3Q7','L0K4J8H2G6','F1D5S9A3P7','X0C4V8B2N6','M1N5B9V3C7','Q0W4E8R2T6','Y1U5I9O3P7','A0S4D8F2G6','K1L5P9O3I7','U0Y4T8R2E6','H1J5K9L3M7','N0B4V8C2X6','G1F5D9S3A7','W0E4R8T2Y6','I1O5P9L3K7','J0H4G8F2D6','S1A5Z9X3C7','V0B4N8M2K6','C3F7H1K5M9','R2D6G0J4L8','X1V5N9M3B7','S0W4T8Y2U6','P1Q5Z9X3C7','K0L4M8N2B6','F1G5H9J3K7','D0S4A8P2O6','E1R5T9Y3U7','I0O4P8A2S6','Z1X5C9V3B7','M0N4K8J2H6','G1F5D9A3S7','W0Q4E8R2T6','Y1H5U9I3O7','L0K4J8G2F6','B1V5C9X3Z7','P0M4N8B2V6','T1R5E9W3S7','A0Q4W8E2R6','H1K5L9P3O7','N0M4K8J2G6','D1F5G9H3J7','X0Z4C8V2B6','S1D5F9G3H7','U0Y4T8R2Q6','M1K5J9H3G7','C0V4B8N2M6','L1P5O9I3U7','E0W4Q8A2S6','X1C5V9B3N7','H0G4F8D2S6','R1T5Y9U3I7','P0O4L8K2J6','N1M5B9V3C7','A0S4D8F2G6','T1Y5U9I3O7','G0F4H8J2K6','W1E5R9T3Y7','Z0X4C8V2B6','L1K5J9H3G7','Q0W4E8R2T6','M1N5B9V3X7','S0D4F8G2H6','U1I5O9P3L7','K0J4H8G2F6','B1N5M9K3J7','R0E4W8Q2A6','D1S5A9P3O7','V0C4X8Z2M6','AX-5670'];
+
         window.onload = function() {
-            loadImages('images', '', '', 'mainGallery', 1000);
+            loadImages('images', 'mainGallery', 1000, '');
             if (localStorage.getItem('isBrawlVip') === 'true') { activateVipUI(); }
         }
-        function loadImages(folder, prefix, suffix, containerId, limit) {
+
+        function loadImages(folder, containerId, limit, suffix) {
             const container = document.getElementById(containerId);
+            container.innerHTML = ''; 
             for (let i = 1; i <= limit; i++) {
                 let img = document.createElement('img');
-                img.src = `${folder}/${i}${suffix}.jpg`;
+                img.src = folder + '/' + i + suffix + '.jpg';
                 img.loading = "lazy";
                 img.onerror = function() { this.remove(); };
                 container.appendChild(img);
             }
         }
+
         function showKeyInput() {
             let key = prompt("Введите ключ доступа:");
             if (!key) return;
-            
-            let usedKeys = JSON.parse(localStorage.getItem("usedBrawlKeys") || "[]");
-
-            if (usedKeys.includes(key)) {
-                alert("ЭТОТ КЛЮЧ УЖЕ БЫЛ ИСПОЛЬЗОВАН!");
+            let used = JSON.parse(localStorage.getItem("usedBrawlKeys") || "[]");
+            if (used.includes(key)) {
+                alert("КЛЮЧ УЖЕ ИСПОЛЬЗОВАН!");
             } else if (validKeys.includes(key)) {
-                usedKeys.push(key);
-                localStorage.setItem("usedBrawlKeys", JSON.stringify(usedKeys));
-                localStorage.setItem("isBrawlVip", "true");
+                used.push(key);
+                localStorage.setItem("usedBrawlKeys", JSON.stringify(used));
+                localStorage.setItem('isBrawlVip', 'true');
                 activateVipUI();
             } else {
                 alert("НЕВЕРНЫЙ КЛЮЧ!");
             }
         }
-        }
+
         function activateVipUI() {
             document.getElementById('shopContent').style.display = 'none';
             document.getElementById('vipContent').style.display = 'block';
-            if (document.getElementById('vipGallery').children.length === 0) {
-                loadImages('vip.images', '', 'vip', 'vipGallery', 1000);
-            }
+            loadImages('vip.images', 'vipGallery', 1000, 'vip');
         }
+
         function logout() {
             document.getElementById('vipContent').style.display = 'none';
             document.getElementById('shopContent').style.display = 'block';
         }
     </script>
-
-    <!-- Default Statcounter code for BRAWL PORNO VIP XXX
-https://lucka720.github.io/Brawl-World/ -->
-<script type="text/javascript">
-var sc_project=13211170; 
-var sc_invisible=1; 
-var sc_security="c870f9cc"; 
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js"
-async></script>
-<noscript><div class="statcounter"><a title="web counter"
-href="https://statcounter.com/" target="_blank"><img
-class="statcounter"
-src="https://c.statcounter.com/13211170/0/c870f9cc/1/"
-alt="web counter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
-
 </body>
 </html>
